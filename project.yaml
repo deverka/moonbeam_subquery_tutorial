@@ -1,0 +1,46 @@
+specVersion: 1.0.0
+name: moonbeam-evm-starter
+version: 0.0.1
+runner:
+  node:
+    name: '@subql/node'
+    version: '>=0.35.0'
+  query:
+    name: '@subql/query'
+    version: '>=0.16.0'
+description: Moonbeam / SubQuery Course — Building dApps with the help of SubQUery
+repository: 'https://github.com/subquery/tutorials-frontier-evm-starter'
+schema:
+  file: ./schema.graphql
+network:
+  chainId: '0x401a1f9dca3da46f5c4091016c8a2f26dcea05865116b286f60f668207d1474b'
+  endpoint: 'wss://moonriver.api.onfinality.io/public-ws'
+  dictionary: 'https://api.subquery.network/sq/subquery/moonriver-dictionary'
+  chaintypes:
+    file: ./dist/chaintypes.js
+dataSources:
+  - kind: substrate/FrontierEvm
+    startBlock: 752073
+    processor:
+      file: ./node_modules/@subql/frontier-evm-processor/dist/bundle.js
+      options:
+        abi: erc20
+        address: '0x6bd193ee6d2104f14f94e2ca6efefae561a4334b'
+    assets:
+      erc20:
+        file: ./erc20.abi.json
+    mapping:
+      file: ./dist/index.js
+      handlers:
+        - handler: handleFrontierEvmEvent
+          kind: substrate/FrontierEvmEvent
+          filter:
+            topics:
+              - 'Transfer(address indexed from,address indexed to,uint256 value)'
+              - null
+              - null
+              - null
+        - handler: handleFrontierEvmCall
+          kind: substrate/FrontierEvmCall
+          filter:
+            function: 'approve(address to,uint256 value)'
