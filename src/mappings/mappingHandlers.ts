@@ -1,9 +1,10 @@
-import { Approval, Transaction } from "../types";
+import { Approval, Collator, Transaction } from "../types";
 import {
   FrontierEvmEvent,
   FrontierEvmCall,
 } from "@subql/frontier-evm-processor";
 import { BigNumber } from "ethers";
+import {SubstrateEvent} from "@subql/types";
 
 // Setup types from ABI
 type TransferEventArgs = [string, string, BigNumber] & {
@@ -16,6 +17,7 @@ type ApproveCallArgs = [string, BigNumber] & {
   _value: BigNumber;
 };
 
+// Create Transaction 
 export async function handleFrontierEvmEvent(
   event: FrontierEvmEvent<TransferEventArgs>
 ): Promise<void> {
@@ -29,6 +31,7 @@ export async function handleFrontierEvmEvent(
   await transaction.save();
 }
 
+// Create Approval
 export async function handleFrontierEvmCall(
   event: FrontierEvmCall<ApproveCallArgs>
 ): Promise<void> {
@@ -40,4 +43,17 @@ export async function handleFrontierEvmCall(
   approval.contractAddress = event.to;
 
   await approval.save();
+}
+
+// Create Collator
+export async function collatorJoined(
+  event: SubstrateEvent): Promise<void> {
+
+  const address = event.extrinsic.extrinsic.signer.toString();
+  const collator = Collator.create({
+      id: address,
+      joinedDate: event.block.timestamp
+  });
+
+  await collator.save();
 }

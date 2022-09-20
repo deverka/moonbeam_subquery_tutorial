@@ -19,3 +19,10 @@ type Approval @entity {
 
   contractAddress: String!
 }
+
+
+type Collator @entity {
+  id: ID! # Collator address
+
+  joinedDate: Date!
+}

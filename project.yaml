@@ -44,3 +44,13 @@ dataSources:
           kind: substrate/FrontierEvmCall
           filter:
             function: 'approve(address to,uint256 value)'
+  - kind: substrate/Runtime
+    startBlock: 69218
+    mapping:
+      file: './dist/index.js'
+      handlers:
+        - handler: collatorJoined
+          kind: substrate/EventHandler
+          filter:
+            module: parachainStaking
+            method: JoinedCollatorCandidates
