@@ -4,7 +4,7 @@ import {
   FrontierEvmCall,
 } from "@subql/frontier-evm-processor";
 import { BigNumber } from "ethers";
-import {SubstrateEvent} from "@subql/types";
+import {SubstrateEvent, SubstrateExtrinsic} from "@subql/types";
 
 // Setup types from ABI
 type TransferEventArgs = [string, string, BigNumber] & {
@@ -56,4 +56,22 @@ export async function collatorJoined(
   });
 
   await collator.save();
+}
+
+// Collator Leaves
+
+export async function collatorLeft(
+  call: SubstrateExtrinsic): Promise<void> {
+
+  const address = call.extrinsic.signer.toString();
+  const collator = await Collator.get(address);
+
+  if (!collator) {
+      // Collator doesn't exist
+  } else {
+      collator.leaveDate = call.block.timestamp
+  }
+
+  await collator.save();
+
 }

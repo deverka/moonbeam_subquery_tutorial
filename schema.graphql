@@ -25,4 +25,5 @@ type Collator @entity {
   id: ID! # Collator address
 
   joinedDate: Date!
+  leaveDate: Date
 }
