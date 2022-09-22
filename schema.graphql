@@ -1,36 +1,27 @@
 type Transaction @entity {
   id: ID! # Transaction hash
-  value: BigInt!
-
-  to: Account! # Foreign key 
-
-  from: Account! # Foreign key 
-
-  contractAddress: String!
+  value: BigInt! @index
+  to: Account! # Foreign key field
+  from: Account! # Foreign key field
+  contractAddress: String! @index(unique: true)
 }
 
 type Account @entity {
   id: ID! # Key
-
   sentTransactions: [Transaction] @derivedFrom(field: "from")
   receivedTransactions: [Transaction] @derivedFrom(field: "to")
 }
 
 type Approval @entity {
   id: ID! # Transaction hash
-  value: BigInt!
-
-  owner: String!
-
-  spender: String!
-
-  contractAddress: String!
+  value: BigInt! @index
+  owner: String! @index(unique: true)
+  spender: String! @index(unique: true)
+  contractAddress: String! @index(unique: true)
 }
-
 
 type Collator @entity {
   id: ID! # Collator address
-
-  joinedDate: Date!
-  leaveDate: Date
+  joinedDate: Date! @index
+  leaveDate: Date @index
 }

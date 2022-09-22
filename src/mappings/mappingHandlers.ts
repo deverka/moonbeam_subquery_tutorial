@@ -27,14 +27,14 @@ export async function handleFrontierEvmEvent(
   const to = event.args.to;
   
   // Ensure account entities exist
-  const fromAccount = await Account.get(from.toString());
+  const fromAccount = await Account.get(from);
     if (!fromAccount) {
-        await new Account(from.toString()).save();
+        await new Account(from).save();
     }
     
-    const toAccount = await Account.get(to.toString());
+    const toAccount = await Account.get(to);
     if (!toAccount) {
-        await new Account(to.toString()).save();
+        await new Account(to).save();
     }
 
   // Create new transaction entity
