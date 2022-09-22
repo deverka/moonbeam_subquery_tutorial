@@ -10,7 +10,7 @@
 
 type Transaction @entity {
   id: ID! # Transaction hash
-  value: BigInt! @index(unique: false)
+  value: BigInt! @index
   to: Account! # Foreign key field
   from: Account! # Foreign key field
   contractAddress: String! @index(unique: true)
@@ -24,7 +24,7 @@ type Account @entity {
 
 type Approval @entity {
   id: ID! # Transaction hash
-  value: BigInt! @index(unique: false)
+  value: BigInt! @index
   owner: String! @index(unique: true)
   spender: String! @index(unique: true)
   contractAddress: String! @index(unique: true)
@@ -32,6 +32,5 @@ type Approval @entity {
 
 type Collator @entity {
   id: ID! # Collator address
-  joinedDate: Date! @index(unique: false)
-  leaveDate: Date @index(unique: false)
-}
+  joinedDate: Date! @index
+  leaveDate: Date @index
