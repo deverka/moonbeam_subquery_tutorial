@@ -76,7 +76,6 @@ export async function collatorJoined(
 }
 
 // Collator Leaves
-
 export async function collatorLeft(
   call: SubstrateExtrinsic): Promise<void> {
 

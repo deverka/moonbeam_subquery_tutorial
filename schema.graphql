@@ -1,17 +1,13 @@
 type Transaction @entity {
   id: ID! # Transaction hash
   value: BigInt!
-
   to: Account! # Foreign key 
-
   from: Account! # Foreign key 
-
   contractAddress: String!
 }
 
 type Account @entity {
   id: ID! # Key
-
   sentTransactions: [Transaction] @derivedFrom(field: "from")
   receivedTransactions: [Transaction] @derivedFrom(field: "to")
 }
@@ -19,18 +15,14 @@ type Account @entity {
 type Approval @entity {
   id: ID! # Transaction hash
   value: BigInt!
-
   owner: String!
-
   spender: String!
-
   contractAddress: String!
 }
 
 
 type Collator @entity {
-  id: ID! # Collator address
-
+  id:∂
   joinedDate: Date!
   leaveDate: Date
 }
