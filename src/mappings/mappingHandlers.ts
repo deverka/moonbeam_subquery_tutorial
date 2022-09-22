@@ -1,4 +1,4 @@
-import { Approval, Collator, Transaction } from "../types";
+import { Account, Approval, Collator, Transaction } from "../types";
 import {
   FrontierEvmEvent,
   FrontierEvmCall,
@@ -17,15 +17,32 @@ type ApproveCallArgs = [string, BigNumber] & {
   _value: BigNumber;
 };
 
-// Create Transaction 
+// Create Transaction
 export async function handleFrontierEvmEvent(
   event: FrontierEvmEvent<TransferEventArgs>
 ): Promise<void> {
+  
+  //Get data from the event 
+  const from =  event.args.from
+  const to = event.args.to;
+  
+  // Ensure account entities exist
+  const fromAccount = await Account.get(from.toString());
+    if (!fromAccount) {
+        await new Account(from.toString()).save();
+    }
+    
+    const toAccount = await Account.get(to.toString());
+    if (!toAccount) {
+        await new Account(to.toString()).save();
+    }
+
+  // Create new transaction entity
   const transaction = new Transaction(event.transactionHash);
 
   transaction.value = event.args.value.toBigInt();
-  transaction.from = event.args.from;
-  transaction.to = event.args.to;
+  transaction.fromId = from;
+  transaction.toId = to;
   transaction.contractAddress = event.address;
 
   await transaction.save();

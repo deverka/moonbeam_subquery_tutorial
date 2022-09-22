@@ -2,11 +2,18 @@ type Transaction @entity {
   id: ID! # Transaction hash
   value: BigInt!
 
-  to: String!
+  to: Account! # Foreign key 
 
-  from: String!
+  from: Account! # Foreign key 
 
   contractAddress: String!
+}
+
+type Account @entity {
+  id: ID! # Key
+
+  sentTransactions: [Transaction] @derivedFrom(field: "from")
+  recievedTransactions: [Transaction] @derivedFrom(field: "to")
 }
 
 type Approval @entity {
