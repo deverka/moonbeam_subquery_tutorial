@@ -1,9 +1,19 @@
+# About @index annotation
+# To improve query performance, we strongly suggest adding indexes to any field that you plan to filter or sort by.
+# Add the `@index` or `@index(unique: true) annotation after any non-key field.
+# Learn more https://academy.subquery.network/build/graphql.html#supported-scalars-and-types
+
+# About @derivedFrom annotation
+# We always recommend enabling a reverse lookup on an entity to a related entity.
+# Attach @derivedFrom to the field and point to its reverse lookup field of another entity.
+# Learn more https://academy.subquery.network/build/graphql.html#reverse-lookups
+
 type Transaction @entity {
   id: ID! # Transaction hash
-  value: BigInt!
-  to: Account! # Foreign key 
-  from: Account! # Foreign key 
-  contractAddress: String!
+  value: BigInt! @index(unique: false)
+  to: Account! # Foreign key field
+  from: Account! # Foreign key field
+  contractAddress: String! @index(unique: true)
 }
 
 type Account @entity {
@@ -14,14 +24,14 @@ type Account @entity {
 
 type Approval @entity {
   id: ID! # Transaction hash
-  value: BigInt!
-  owner: String!
-  spender: String!
-  contractAddress: String!
+  value: BigInt! @index(unique: false)
+  owner: String! @index(unique: true)
+  spender: String! @index(unique: true)
+  contractAddress: String! @index(unique: true)
 }
 
 type Collator @entity {
-  id:∂
-  joinedDate: Date!
-  leaveDate: Date
+  id: ID! # Collator address
+  joinedDate: Date! @index(unique: false)
+  leaveDate: Date @index(unique: false)
 }
