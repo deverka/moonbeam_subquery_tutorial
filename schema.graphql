@@ -20,7 +20,6 @@ type Approval @entity {
   contractAddress: String!
 }
 
-
 type Collator @entity {
   id:∂
   joinedDate: Date!
