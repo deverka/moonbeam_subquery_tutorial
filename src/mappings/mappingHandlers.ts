@@ -22,7 +22,7 @@ export async function handleFrontierEvmEvent(
   event: FrontierEvmEvent<TransferEventArgs>
 ): Promise<void> {
   
-  //Get data from the event 
+  // Get data from the event 
   const from =  event.args.from
   const to = event.args.to;
   
