@@ -9,7 +9,7 @@ runner:
     name: '@subql/query'
     version: '>=0.16.0'
 description: Moonbeam / SubQuery Course — Building dApps with the help of SubQuery
-repository: 'https://github.com/subquery/tutorials-frontier-evm-starter'
+repository: 'https://github.com/deverka/moonbeam_subquery_tutorial'
 schema:
   file: ./schema.graphql
 network:
