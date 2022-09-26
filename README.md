@@ -1,4 +1,4 @@
-# Moonbeam SubQuery Tutorial
+# Moonbeam <> SubQuery Integration Tutorial
 
 In this quick tutorial we will learn how to index Substrate events alongside Moonbeam data and **how to build dApps with the help of SubQuery**. 
 
