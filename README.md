@@ -1,4 +1,11 @@
-# SubQuery - Starter Package
+# Moonbeam SubQuery Tutorial
+
+In this quick tutorial we will learn how to index Substrate events alongside Moonbeam data and **how to build dApps with the help of SubQuery**. 
+
+This project is also hosted by SubQuery's **Managed Service** and you can view it in **SubQuery Explorer** — a marketplace of all pulished projects. You can test queries directly in your browser using our GraphQl playground: 
+https://explorer.subquery.network/subquery/subquery/Moonbeam-Subquery-Integration-Tutorial
+
+## Basic Frontier EVM Starter 
 
 A basic Frontier EVM example project with an event and call handler. Read more about this at https://university.subquery.network/build/substrate-evm.html. This project can be use as a starting point for developing your SubQuery project
 
