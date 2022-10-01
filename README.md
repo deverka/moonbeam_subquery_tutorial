@@ -129,7 +129,7 @@ With this project can try to query with the following code to get a taste of how
         }
     }
   	collators (last: 5) {
-				nodes {
+		nodes {
           	id
           	joinedDate
           	leaveDate
