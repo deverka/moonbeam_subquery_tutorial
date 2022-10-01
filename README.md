@@ -5,13 +5,6 @@ In this quick tutorial we will learn how to index Substrate events alongside Moo
 This project is also hosted by SubQuery's **Managed Service** and you can view it in **SubQuery Explorer** — a marketplace of all pulished projects. You can test queries directly in your browser using our GraphQl playground: 
 https://explorer.subquery.network/subquery/subquery/Moonbeam-Subquery-Integration-Tutorial
 
-## Basic Frontier EVM Starter 
-
-A basic Frontier EVM example project with an event and call handler. Read more about this at https://university.subquery.network/build/substrate-evm.html. This project can be use as a starting point for developing your SubQuery project
-
-The Starter Package is an example that you can use as a starting point for developing your SubQuery project.
-A SubQuery package defines which data The SubQuery will index from the Substrate blockchain, and how it will store it.
-
 ## Preparation
 
 #### Environment
@@ -19,6 +12,8 @@ A SubQuery package defines which data The SubQuery will index from the Substrate
 - [Typescript](https://www.typescriptlang.org/) are required to compile project and define types.
 
 - Both SubQuery CLI and generated Project have dependencies and require [Node](https://nodejs.org/en/).
+
+- You will also need Yarn or NPM and Docker. 
 
 #### Install the SubQuery CLI
 
@@ -50,38 +45,43 @@ Last, under the project directory, run following command to install all the depe
 yarn install
 ```
 
-## Configure your project
+## Configure Your Project Further
 
-In the starter package, we have provided a simple example of project configuration. You will be mainly working on the following files:
+If you want to change your project you will need to work on the following files:
 
-- The Manifest in `project.yaml`
-- The GraphQL Schema in `schema.graphql`
-- The Mapping functions in `src/mappings/` directory
+- The Manifest in `project.yaml` to **configure your project**
+- The GraphQL Schema in `schema.graphql` to **define shape of the data**
+- The Mapping functions in `src/mappings/` directory to **transform data coming from blockchain**
 
-For more information on how to write the SubQuery,
-check out our doc section on [Define the SubQuery](https://doc.subquery.network/define_a_subquery.html)
+## Build the Project 
 
-#### Code generation
+#### Install dependencies
 
-In order to index your SubQuery project, it is mandatory to build your project first.
-Run this command under the project directory.
+Install the node dependencies by running the following command:
 
 ```
-yarn codegen
+yarn install OR npm install
 ```
 
-## Build the project
+#### Generate associated typescript
 
-In order to deploy your SubQuery project to our hosted service, it is mandatory to pack your configuration before upload.
-Run pack command from root directory of your project will automatically generate a `your-project-name.tgz` file.
+Next, we will generate the associated typescript with the following command:
 
 ```
-yarn build
+yarn codegen OR npm run-script codegen
+```
+#### Build the project 
+
+This bundles the app into static files for production.
+
+
+```
+yarn build OR npm run-script codegen
 ```
 
 ## Indexing and Query
 
-#### Run required systems in docker
+#### Run Docker
 
 Under the project directory run following command:
 
@@ -89,24 +89,69 @@ Under the project directory run following command:
 docker-compose pull && docker-compose up
 ```
 
-#### Query the project
+#### Query this Project
 
 Open your browser and head to `http://localhost:3000`.
 
 Finally, you should see a GraphQL playground is showing in the explorer and the schemas that ready to query.
 
-For the `subql-starter` project, you can try to query with the following code to get a taste of how it works.
+With this project can try to query with the following code to get a taste of how it works.
 
 ```graphql
 {
   query {
-    starterEntities(first: 10) {
-      nodes {
-        field1
-        field2
-        field3
-      }
+    approvals (first: 5) {
+        nodes {
+            id
+            value
+            owner
+            spender
+        }
     }
+    transactions (first: 5) {
+        nodes {
+            id
+            value
+            to: id
+            from: id
+        }
+    }
+    accounts(first: 5) {
+        nodes {
+            id
+            sentTransactions {
+              nodes {
+                  id
+                  value
+                  to: id
+                  from: id
+                  contractAddress       
+              }
+            }
+        }
+    }
+  	collators (last: 5) {
+				nodes {
+          	id
+          	joinedDate
+          	leaveDate
+        }
+  	}
   }
 }
 ```
+
+##  Useful Resources
+
+- [SubQuery Documentation](https://academy.subquery.network/)
+- [Tips and tricks for Performance Improvements](https://academy.subquery.network/faqs/faqs.html#how-can-i-optimise-my-project-to-speed-it-up)
+- [Automated Historical State tracking](https://academy.subquery.network/th/run_publish/historical.html)
+- [Custom Substrate Chains](https://university.subquery.network/build/manifest.html#custom-substrate-chains)
+- [GraphQL Subscriptions](https://academy.subquery.network/run_publish/subscription.html)
+
+
+##  About SubQuery
+
+SubQuery is a blockchain developer toolkit enabling others to build Web3 applications of the future. A SubQuery project is a complete API to organise and query data from Layer-1 chains. Currently servicing Polkadot, Substrate, Avalanche, Terra and Cosmos projects, this data-as-a-service allows developers to focus on their core use case and front-end, without needing to waste time on building a custom backend for data processing. The SubQuery Network proposes to enable this same scalable and reliable solution, but in a completely decentralised way.
+
+[Linktree](https://subquery.network/) | [Website](https://subquery.network/) | [Discord](https://discord.com/invite/subquery) | [Telegram](https://t.me/subquerynetwork) | [Twitter](https://twitter.com/SubQueryNetwork) | [Matrix](https://matrix.to/#/#subquery:matrix.org) | [LinkedIn](https://www.linkedin.com/company/subquery/mycompany/) | [YouTube](https://www.youtube.com/channel/UCi1a6NUUjegcLHDFLr7CqLw)
