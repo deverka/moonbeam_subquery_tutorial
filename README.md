@@ -29,15 +29,15 @@ Run help to see available commands provided by SubQuery CLI:
 subql help
 ```
 
-## Initialize the starter package
+## In case of Initializing the Starter Package (optional)
 
-Inside the directory in which you want to create the SubQuery project, simply replace `project-name` with your project name and run the command:
+Inside the directory in which you want to create the SubQuery project run the following command and follow all the steps chosing project name, GitHub repo addres, network familay, rpc endpoint and more. Everything can by changed afterwords as well. 
 
 ```
 subql init project-name
 ```
 
-Then you should see a folder with your project name has been created inside the directory, you can use this as the start point of your project. And the files should be identical as in the [Directory Structure](https://doc.subquery.network/directory_structure.html).
+Then you should see a folder with your project name has been created inside the directory, you can use this as the start point of your project. And the files should be identical as in the [Directory Structure](https://academy.subquery.network/build/introduction.html#directory-structure).
 
 ## Configure Your Project Further
 
