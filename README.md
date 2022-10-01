@@ -96,8 +96,7 @@ Finally, you should see a GraphQL playground is showing in the explorer and the 
 With this project can try to query with the following code to get a taste of how it works.
 
 ```graphql
-{
-  query {
+query {
     approvals (first: 5) {
         nodes {
             id
@@ -135,8 +134,8 @@ With this project can try to query with the following code to get a taste of how
             }
         }
     }
-  }
 }
+
 ```
 
 ##  Useful Resources
