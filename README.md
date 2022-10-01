@@ -61,7 +61,7 @@ yarn install OR npm install
 
 [Learn more](https://academy.subquery.network/build/install.html#)
 
-#### 2. Generate associated typescript
+#### 2. Generate Associated Typescript
 
 Next, we will generate the associated typescript with the following command:
 
@@ -125,13 +125,13 @@ With this project can try to query with the following code to get a taste of how
         nodes {
             id
             sentTransactions {
-              nodes {
-                  id
-                  value
-                  to: id
-                  from: id
-                  contractAddress       
-              }
+                nodes {
+                    id
+                    value
+                    to: id
+                    from: id
+                    contractAddress       
+                }
             }
         }
     }
