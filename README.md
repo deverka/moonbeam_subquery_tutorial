@@ -115,12 +115,12 @@ With this project can try to query with the following code to get a taste of how
         }
     }
     collators (last: 5) {
-		nodes {
-          	id
-          	joinedDate
-          	leaveDate
+        nodes {
+            id
+            joinedDate
+            leaveDate
         }
-  	}
+    }
     accounts(first: 5) {
         nodes {
             id
