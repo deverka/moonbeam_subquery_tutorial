@@ -39,7 +39,7 @@ subql init project-name
 
 Then you should see a folder with your project name has been created inside the directory, you can use this as the start point of your project. And the files should be identical as in the [Directory Structure](https://academy.subquery.network/build/introduction.html#directory-structure).
 
-## Configure Your Project Further
+## Configure the Project Further
 
 If you want to change your project you will need to work on the following files:
 
@@ -145,7 +145,6 @@ query {
 - [Automated Historical State tracking](https://academy.subquery.network/th/run_publish/historical.html)
 - [Custom Substrate Chains](https://university.subquery.network/build/manifest.html#custom-substrate-chains)
 - [GraphQL Subscriptions](https://academy.subquery.network/run_publish/subscription.html)
-
 
 ##  About SubQuery
 
