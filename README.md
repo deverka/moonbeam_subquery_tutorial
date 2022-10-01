@@ -7,7 +7,7 @@ https://explorer.subquery.network/subquery/subquery/Moonbeam-Subquery-Integratio
 
 ## Preparation
 
-#### Environment
+#### Environment and dependencies 
 
 - [Typescript](https://www.typescriptlang.org/) is required to compile project and define types.
 
@@ -51,7 +51,7 @@ If you want to change your project you will need to work on the following files:
 
 ## Build the Project 
 
-#### Install dependencies
+#### 1. Install dependencies
 
 Under the project directory, install the node dependencies by running the following command:
 
@@ -61,14 +61,14 @@ yarn install OR npm install
 
 [Learn more](https://academy.subquery.network/build/install.html#)
 
-#### Generate associated typescript
+#### 2. Generate associated typescript
 
 Next, we will generate the associated typescript with the following command:
 
 ```
 yarn codegen OR npm run-script codegen
 ```
-#### Build the project 
+#### 3. Build the project 
 
 This bundles the app into static files for production.
 
@@ -79,7 +79,7 @@ yarn build OR npm run-script codegen
 
 ## Indexing and Query
 
-#### Run Docker
+#### 1. Run Docker
 
 Under the project directory run following command:
 
@@ -87,7 +87,7 @@ Under the project directory run following command:
 docker-compose pull && docker-compose up
 ```
 
-#### Query this Project
+#### 2. Query this Project
 
 Open your browser and head to `http://localhost:3000`.
 
